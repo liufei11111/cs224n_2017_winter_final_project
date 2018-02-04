@@ -7,6 +7,9 @@ train = pd.read_csv('../../input/train.csv')
 test = pd.read_csv('../../input/test.csv')
 subm = pd.read_csv('../../input/sample_submission.csv')
 
+label_cols = ['toxic', 'severe_toxic', 'obscene', 'threat', 'insult', 'identity_hate']
+train['none'] = 1-train[label_cols].max(axis=1)
+
 COMMENT = 'comment_text'
 train[COMMENT].fillna("unknown", inplace=True)
 test[COMMENT].fillna("unknown", inplace=True)
